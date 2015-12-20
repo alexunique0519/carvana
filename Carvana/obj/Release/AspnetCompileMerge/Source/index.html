@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html data-ng-app="carpoolApp">
+    <head>
+        <meta name="keywords" content="angularjs, carpool, ridesharing"/>
+        <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible" />
+        <title>Carvana</title>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <link href="style/site.css" rel="stylesheet" />
+        <link href="style/loading-bar.css" rel="stylesheet" />
+       
+        <!--link href="style/font-awesome.min.css" rel="stylesheet" /
+        <link href="style/social-buttons.css" rel="stylesheet" />
+        <link href="style/bootstrap.min.css" rel="stylesheet" />-->
+
+        <link rel="stylesheet" type="text/css" href="../../style/site.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    
+    </head>
+<body>
+    <div id="background">
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: silver;"  role="navigation" data-ng-controller="indexController" ng-init="loadData()">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dropdown_menu" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                    <a class="navbar-brand pull left" href="#home">Carvana</a> 
+                </div>
+
+                <div id="dropdown_menu" class="collapse navbar-collapse"  >
+                    <ul class="nav navbar-nav navbar-right" >
+                        <li data-ng-hide="!authentication.isAuth"><a href="#" style="color: black; font-weight: bold;">Welcome {{authentication.userName}}</a></li>
+                        <li data-ng-hide="authentication.isAuth"> <a href="#/login" style="color: black; font-weight: bold;">Login</a></li>
+                       <!-- <li data-ng-hide="!authentication.isAuth"><a href="#/profile" style="color: black; font-weight: bold;">Profile</a></li> -->
+                        <li data-ng-hide="!authentication.isAuth"><a href="" ng-click="logOut()"; style="color: black; font-weight: bold;">Logout</a></li>
+                        <li><a href="#/search" ng-click="open()" style="color: black; font-weight: bold;">Trip Search</a></li>
+                        <li data-ng-hide = "!authentication.isAuth"><a href="#/shareRide" style="color: black; font-weight: bold;">Share Ride</a></li>
+                </div>
+            </div>
+        </nav>
+        
+        <div  style="height:100%; min-height: 100%;">
+
+            <div data-ng-view="">
+        
+            </div>    
+        </div>
+
+    </div>
+    <div id="footer" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center" style="margin-top: 10px;">
+                    &copy The Carvana Team
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        
+        
+        
+        
+        
+    <!-- 3rd party libraries -->
+
+    <!-- Mapbox Libraries -->
+   
+        
+        
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
+    <!--datetimepicker-->
+    <link href="style/datetimepicker.css" rel="stylesheet"/>
+    <script src="scripts/datetimepicker.js"></script>
+
+    <!-- Load app main script -->
+    <script src="app/app.js?v=2"></script>
+    <script src="app/services/ModelShareService.js"></script>
+    <script src="app/controllers/signupController.js"></script>
+    <script src="app/controllers/homeController.js"></script>
+    <script src="app/controllers/loginController.js"></script>
+    <script src="app/controllers/indexcontroller.js"></script>
+    
+    <script src="app/controllers/profileController.js"></script>
+    <script src="app/controllers/tripResultController.js"></script> 
+    <script src="app/controllers/tripShareViewController.js"></script>
+     <!--       <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>-->
+    <script src="app/controllers/tripSearchModalController.js"></script>
+        <script src="app/controllers/shareRideController.js"></script>
+    <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/loading-bar.min.js"></script>
+
+
+
+    <!-- Load services -->
+    <script src="app/services/authInterceptorService.js"></script>
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/tripSearchService.js"></script>
+        <script src="app/services/RideShareService.js"></script>     
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-spinner/0.5.1/angular-spinner.js"></script>
+
+        
+   
+     <div id="loginModel" class="modal fade" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true"  data-ng-controller = "loginController"  >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        
+                        <div class="modal-body row">
+                            <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">
+                                <div class="form-group">
+                                    <input type="text" class="form-control input-lg" placeholder="UserName" data-ng-model="login_data.username" autofocus required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control input-lg" placeholder="Password" data-ng-model="login_data.password" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button class="btn btn-block btn-primary">Sign In</button>
+                                    <div data-ng-hide="message == ''" class="alert alert-danger">
+                                        {{message}}
+                                    </div>
+            <div style="margin: 5px, 0;">
+               <p><a class="btn btn-info btn-block" href="#/signup" style="background-color: hsl(114, 47%, 39%) !important; " role="button">Register &raquo;</a></p>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+               </div> 
+        </div>           
+        
+        <!--
+
+
+
+        <div data-ng-controller="tripSearchController" class="modal fade" id="searchModel" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h2 class="text-center">Trip Search</h2>
+                    </div>
+                    <div class="modal-body row">
+                        <pre>Selected time and date is: <em>{{date | date:'shortTime' }}, {{date | date:'fullDate' }}</em></pre>
+                        
+                        
+                            <label for="dtp_input2" class="col-md-2 control-label">Date/Time </label>
+                        
+                        <div class="col-md-8">   
+      <datetimepicker placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" ng-model="date" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+                        </div>
+                        </div>
+                        <form class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-0">                           
+                                <br>
+                                <label class="col-md-2 control-label">From </label>
+                                    <div class="input-group">
+                                        <select class="form-control r-inputs"  >
+                                                <option>--Province--</option>
+                                                <option></option>
+                                                <option></option>
+                                        </select>
+
+                                        <select class="form-control r-inputs" >
+                                                <option>--City--</option>
+                                                <option></option>
+                                                <option></option>
+
+                                        </select>
+
+                                        <input type="text" class="form-control input-sm r-inputs loc-height" placeholder="Location" /> 
+                                    </div>
+                                <br>
+
+
+                                <label class="col-md-2 control-label">To</label>
+                                    <div class="input-group">
+                                        <select class="form-control r-inputs"  >
+                                                <option>--Province--</option>
+                                                <option></option>
+                                                <option></option>
+
+                                                </select>
+
+                                        <select class="form-control r-inputs" >
+                                                <option>--City--</option>
+                                                <option></option>
+                                                <option></option>
+
+                                                </select>
+
+                                        <input type="text" class="form-control input-sm r-inputs loc-height" placeholder="Location" /> 
+                                    </div>
+                                    <br>
+                                <label class="col-md-2 control-label">Passengers</label>
+                                    <div class="form-group">
+                                        <select class="form-control r-inputs" >
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                        </select>
+                                    </div>
+
+                                   <div class="form-group">
+                                        <button class="btn btn-lg btn-block">Search</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+            -->
+            
+            <div ng-controller="tripSearchModalController">
+                <script type="text/ng-template" id="tripSearchPage">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Trip Search</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                           <label for="dtp_input2" class="col-md-4 control-label" style="margin-top: 5px;" >Departure between </label>
+                           <div class="col-md-8">   
+          <datetimepicker placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" data-ng-model="StartDate" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+                             <div data-ng-hide="StartDateTimeMessage == ''" class="alert alert-danger">
+                                        {{StartDateTimeMessage}}
+                             </div>
+                            </div> 
+                              <label class="col-md-4 control-label" style="margin-top: 5px;" >And </label>
+                           <div class="col-md-8">   
+          <datetimepicker placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" data-ng-model="EndDate" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+                             <div data-ng-hide="EndDateTimeMessage == ''" class="alert alert-danger">
+                                        {{EndDateTimeMessage}}
+                             </div>    
+                                
+                               
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                           <label class="col-md-2 control-label">From </label>
+                           <div class="col-md-5">
+                                    <select class="form-control" id="from_province" data-ng-model="from_province" ng-change="fromProvinceChange()" data-ng-model="from_province">
+                                        <option value="">Select Province</option>
+                                        <option value="Ontario">Ontario</option>
+                                        <option value="British Columbia">British Columbia</option>
+                                        <option value="Manitoba">Manitoba</option>
+                                        <option value="Saskatchewan">Saskatchewan</option>
+                                    </select>
+                                     <div data-ng-hide="FromProvinceError == ''" class="alert alert-danger">
+                                        {{FromProvinceError}}
+                                    </div>
+                                
+                            </div>
+                             <div class="col-md-5">
+                                    <select class="form-control" id="from_city" data-ng-model="from_city" ng-options="option for option in fromCityOptions">                            <option value="">Select City</option>
+                                    </select>
+                                    <div data-ng-hide="FromCityError == ''" class="alert alert-danger">
+                                        {{FromCityError}}
+                                    </div>
+                                
+                            </div >
+                            <div class="form-group col-md-10 pull-right" id="from_location" >
+                                <input type="text" class="form-control" placeholder="Location" data-ng-model="from_location"/> 
+                                <div data-ng-hide="FromLocationError == ''" class="alert alert-danger">
+                                        {{FromLocationError}}
+                                </div>
+                            </div>
+                        </div>     
+                        
+                        <!--The destination info -->
+                          <div class="form-group row">
+                           <label class="col-md-2 control-label">TO </label>
+                           <div class="col-md-5">
+                                    <select class="form-control" id="to_province" ng-change="toProvinceChange()" data-ng-model="to_province">
+                                        <option value="">Select Province</option>
+                                        <option value="Ontario">Ontario</option>
+                                        <option value="British Columbia">British Columbia</option>
+                                        <option value="Manitoba">Manitoba</option>
+                                        <option value="Saskatchewan">Saskatchewan</option>
+                                    </select>
+                                     <div data-ng-hide="ToProvinceError == ''" class="alert alert-danger">
+                                        {{ToProvinceError}}
+                                    </div>
+                                
+                            </div>
+                             <div class="col-md-5">
+                                    <select class="form-control" id="to_city" data-ng-model="to_city" ng-options="option for option in toCityOptions">                          <option value="">Select City</option>
+                                    </select>
+                                     <div data-ng-hide="ToCityError == ''" class="alert alert-danger">
+                                        {{ToCityError}}
+                                    </div>
+                                
+                            </div >
+                            <div class="form-group col-md-10 pull-right" id="to_location" >
+                                <input type="text" class="form-control" placeholder="Location" data-ng-model="to_location"/>
+                                 <div data-ng-hide="ToLocationError == ''" class="alert alert-danger">
+                                        {{ToLocationError}}
+                                    </div>
+                            </div>
+                        </div>     
+                        
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="ok()">Search</button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                    </div>
+                </script>
+
+               
+            
+            </div>
+        
+        
+        
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<div class="tripSharePanel" ng-controller="shareRideController" ng-init="Init()">
+    <div class="row text-center" style="margin-bottom: 10px;">
+        <span class="alert alert-success" data-ng-hide="result == ''">{{result}}</span>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 panel panel-info" id="panel">
+        <div class="panel-heading">
+            <h4 class="text-center">Ride Share Info</h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group row">
+                <label class="control-label col-md-2 form-label">Departure Time</label>
+                <div class="col-md-8">   
+                    <datetimepicker placeholder="mm/dd/yyyy" min-date="minDate" show-weeks="showWeeks" hour-step="hourStep" minute-step="minuteStep" data-ng-model="DepartureDate" show-meridian="showMeridian" date-format="dd-MMM-yyyy" date-options="dateOptions" date-disabled="disabled(date, mode)" readonly-time="false"></datetimepicker>
+                             <div data-ng-hide="DepartureTimeMessage == ''" class="alert alert-danger">
+                                        {{DepartureTimeMessage}}
+                             </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+            <div class="form-group row">
+                           <label class="col-md-2 control-label">From </label>
+                           <div class="col-md-5">
+                                    <select class="form-control" id="from_province" data-ng-model="from_province" ng-change="fromProvinceChange()" data-ng-model="from_province">
+                                        <option value="">Select Province</option>
+                                        <option value="Ontario">Ontario</option>
+                                        <option value="British Columbia">British Columbia</option>
+                                        <option value="Manitoba">Manitoba</option>
+                                        <option value="Saskatchewan">Saskatchewan</option>
+                                    </select>
+                                     <div data-ng-hide="FromProvinceError == ''" class="alert alert-danger">
+                                        {{FromProvinceError}}
+                                    </div>
+                                
+                            </div>
+                             <div class="col-md-5">
+                                    <select class="form-control" id="from_city" data-ng-model="from_city" ng-options="option for option in fromCityOptions">                            <option value="">Select City</option>
+                                    </select>
+                                    <div data-ng-hide="FromCityError == ''" class="alert alert-danger">
+                                        {{FromCityError}}
+                                    </div>
+                                
+                            </div >
+                            <div class="form-group col-md-10 pull-right" id="from_location" >
+                                <input type="text" class="form-control" placeholder="Location" data-ng-model="from_location"/> 
+                                <div data-ng-hide="FromLocationError == ''" class="alert alert-danger">
+                                        {{FromLocationError}}
+                                </div>
+                            </div>
+                        </div>     
+                        
+                        <!--The destination info -->
+                          <div class="form-group row">
+                           <label class="col-md-2 control-label">TO </label>
+                           <div class="col-md-5">
+                                    <select class="form-control" id="to_province" ng-change="toProvinceChange()" data-ng-model="to_province">
+                                        <option value="">Select Province</option>
+                                        <option value="Ontario">Ontario</option>
+                                        <option value="British Columbia">British Columbia</option>
+                                        <option value="Manitoba">Manitoba</option>
+                                        <option value="Saskatchewan">Saskatchewan</option>
+                                    </select>
+                                     <div data-ng-hide="ToProvinceError == ''" class="alert alert-danger">
+                                        {{ToProvinceError}}
+                                    </div>
+                                
+                            </div>
+                             <div class="col-md-5">
+                                    <select class="form-control" id="to_city" data-ng-model="to_city" ng-options="option for option in toCityOptions">                          <option value="">Select City</option>
+                                    </select>
+                                     <div data-ng-hide="ToCityError == ''" class="alert alert-danger">
+                                        {{ToCityError}}
+                                    </div>
+                                
+                            </div >
+                            <div class="form-group col-md-10 pull-right" id="to_location" >
+                                <input type="text" class="form-control" placeholder="Location" data-ng-model="to_location"/>
+                                 <div data-ng-hide="ToLocationError == ''" class="alert alert-danger">
+                                        {{ToLocationError}}
+                                    </div>
+                            </div>
+                        </div>    
+            <div class="form-group row">
+                <label class="control-label col-md-2 form-label" for="postalCode">Seats Available</label>
+                <div class="col-md-10">
+                   <select class="form-control" data-ng-model="seatsAvailable">
+                       <option value="">Select Seats</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                    </select>
+                     <div data-ng-hide="SeatsAvailableError == ''" class="alert alert-danger">
+                                        {{SeatsAvailableError}}
+                     </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-md-2">
+    </div>
+    
+     <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-2"  >
+                    <input type="button" id="submit" value="submit" class="btn btn-success btn-lg btn-block" ng-click="onSubmit()"/>
+                </div>
+                <div class="col-md-5">
+                </div>
+
+     </div>
+     </div>
+    
+</div>

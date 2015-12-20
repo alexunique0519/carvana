@@ -1,0 +1,82 @@
+<div class="row tripSharePanel" ng-controller="tripShareViewController" ng-init="loadData()">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6 panel panel-info" id="panel">
+                    <div class="panel-heading">
+                        <h4 class="text-center">Ride Share Info</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="customerName" >Driver Name</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{driverInfo.fullName}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >Email</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{driverInfo.email}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >Phone Number</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{driverInfo.phoneNumber}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >Departure Time</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.departureTime}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >From Province</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.fromProvince}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >From City</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.fromCity}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >From City</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.fromLocation}}</span>
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >To Province</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.toProvince}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >To City</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.toCity}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >To Location</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.toLocation}}</span>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <label class="control-label col-sm-4 form-label" for="postalCode" >Seats Available</label>
+                            <div class="col-sm-8" >
+                                <span class="form-control" >{{rideShare.seatsAvalible}}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                </div>
+</div>

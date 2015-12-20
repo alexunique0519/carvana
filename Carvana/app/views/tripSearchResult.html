@@ -1,0 +1,54 @@
+<div class="col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-md-offset-2 tripSharePanel" data-ng-controller="tripResultController" ng-init="loadData()">
+          <div>
+            <ul class="list-group" data-ng-repeat="item in RideShareResults">
+                <li class="list-group-item">
+                   
+                   
+                    <div class="row">
+                       <!-- <div class="col-xs-2 col-md-1">
+                            <img data-ng-src="{{buildCategoryIcon(item.venue.categories[0].icon)}}"
+                                title="{{item.venue.categories[0].shortName}}" class="venueIcon" />
+                        </div> -->
+                        
+                        <div class="col-xs-2 col-md-2 postdate">
+                            <div class="month "></div>
+                        </div>
+                        <div class="col-xs-6 col-md-4">
+                              <!--<h3>{{item.DepartureTime}}</h3>-->
+                              <h3>{{item.FromCity}}</h3>
+                            <p>{{item.FromLocation}}</p>    
+                        </div>
+                        <div class="col-md-2">
+                            <h2><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></h2>
+                        </div>
+                        
+                        <div class="col-xs-4 col-md-4">
+                            <h3>{{item.ToCity}}</h3>
+                            <p>{{item.ToLocation}}</p>
+                        </div>
+                    </div>
+                    <hr class="seperator" />
+                    <div class="row">
+                       <div class="col-md-10">
+                        </div>
+                       <a href="" class="col-md-2" data-ng-click="ViewDetail(item.Id);" style="color:white;"><span class="glyphicon glyphicon-bookmark"></span>View Detail</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-offset-2 col-md-8 col-md-offset-2 text-center">
+                <div data-ng-show="totalRecordsCount > 0">
+                    <div>
+                        <div data-pagination="" data-previous-text="<" data-next-text=">" data-first-text="<<" data-last-text=">>"
+                            data-on-select-page="pageChanged(page)" data-total-items="totalRecordsCount" data-page="currentPage"
+                            data-boundary-links="true" class="pagination pagination-sm" data-max-size="5" data-rotate="false" data-items-per-page="10">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>
